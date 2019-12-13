@@ -25,9 +25,11 @@
 #    . $(dirname "$0")/bin/env.sh
 #fi
 
+source ./sync.sh
+
 run_service () {
 	echo "\033[0;32mStarting.. $1\033[0m"
-	docker-compose up -d $1
+        docker-compose -f $COMPOSE_FILE up -d $1
 }
 
 if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
@@ -67,7 +69,11 @@ if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
 	run_service edgex-proxy
 fi
 
-run_service mongo
+if [ "$FOR_REDIS" = true ]; then
+	run_service redis
+else
+	run_service mongo
+fi
 
 run_service logging
 
@@ -89,7 +95,6 @@ run_service system
 
 run_service device-virtual
 
-run_service app-service-configurable
 
 sleep 100s # Wait for rulesengine fully startup, because it takes around 100s on Raspberry Pi
 
@@ -108,7 +113,7 @@ docker logs edgex-vault-worker
 echo "------- kong-db ------"
 docker logs kong-db
 echo "------- kong-migrations ------"
-docker logs kong-migration
+docker logs kong-migrations
 echo "------- kong ------"
 docker logs kong
 echo "------- edgex-proxy ------"
@@ -133,6 +138,6 @@ echo "------- edgex-sys-mgmt-agent ------"
 docker logs edgex-sys-mgmt-agent
 echo "------- device-virtual ------"
 docker logs edgex-device-virtual
-echo "------- app-service-configurable ------"
-docker logs edgex-app-service-configurable
+echo "------- app-service-rules ------"
+docker logs edgex-app-service-configurable-rules
 echo "---------------------------------------------------------"
