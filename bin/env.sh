@@ -1,8 +1,7 @@
 #!/bin/bash
 
-export appService=edgexfoundry/docker-app-service-configurable:1.3.0
-export postman=postman/newman:4.5.6
-export docker_compose_test_tools=$PWD/docker-compose-test-tools.yml
+appService=nexus3.edgexfoundry.org:10004/docker-app-service-configurable:hanoi
+postman=postman/newman:4.5.6
 
 # Set test environment to either docker or localhost (snaps).
 # If TEST_ENV is not set then docker will be used as default.

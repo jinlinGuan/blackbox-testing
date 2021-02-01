@@ -37,12 +37,12 @@ services:
     hostname: app-service-configurable
     environment:
       EDGEX_SECURITY_SECRET_STORE: "false" # required since SecretStore not used and not configured
-      edgex_profile: blackbox-tests
-      Service_Host: app-service-configurable
-      Clients_CoreData_Host: edgex-core-data
-      Registry_Host: edgex-core-consul
-      Service_Port: 48095
-      MessageBus_SubscribeHost_Host: edgex-core-data
+      EDGEX_PROFILE: blackbox-tests
+      SERVICE_HOST: app-service-configurable
+      CLIENTS_COREDATA_HOST: edgex-core-data
+      REGISTRY_HOST: edgex-core-consul
+      SERVICE_PORT: 48095
+      MESSAGEBUS_SUBSCRIBEHOST_HOST: edgex-core-data
     networks:
       edgex-network:
         aliases:

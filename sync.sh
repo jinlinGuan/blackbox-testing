@@ -1,6 +1,6 @@
 #!/bin/bash
 
-HANOI_RELEASE_URL="https://raw.githubusercontent.com/edgexfoundry/developer-scripts/master/releases/hanoi/compose-files"
+HANOI_RELEASE_URL="https://raw.githubusercontent.com/edgexfoundry/developer-scripts/hanoi/releases/hanoi/compose-files"
 
 # x86_64 or arm64
 [ "$(uname -m)" != "x86_64" ] && USE_ARM64="-arm64"
